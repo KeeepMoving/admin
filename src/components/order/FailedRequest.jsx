@@ -3,7 +3,7 @@ import { Table, Form, Input, Select, DatePicker, Button } from 'antd';
 import moment from 'moment';
 import constants from '../../data/constants';
 import {getFailedRequests} from "../../services/order/FailedRequestService"
-import {getFormattedDateString} from "../../utils/commonUitl";
+import {getFormattedDateString, getUuid} from "../../utils/commonUitl";
 
 const Option = Select.Option;
 const {RangePicker} = DatePicker;
@@ -175,7 +175,7 @@ export default class FailedRequest extends Component {
                 </Form>
                 <Table
                     columns={columns}
-                    rowKey={record => record.orderId}
+                    rowKey={getUuid()}
                     dataSource={this.state.data}
                     pagination={this.state.pagination}
                     loading={this.state.loading}
