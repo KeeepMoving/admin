@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import { Table, Form, Input, Select, DatePicker, Button } from 'antd';
+import { Table, Form, Select, DatePicker, Button } from 'antd';
 import moment from 'moment';
 import constants from '../../data/constants';
 import {getReports} from "../../services/order/ReportService"
 import {getFormattedDateString, getUuid} from "../../utils/commonUitl";
 
-const Option = Select.Option;
 const {RangePicker} = DatePicker;
 const columns = [{
     title: '行权时间',

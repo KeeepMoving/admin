@@ -11,6 +11,7 @@ import SystemSettings from "./components/system/SystemSettings";
 import SystemStatus from "./components/system/SystemStatus";
 import Order from "./components/order/Order";
 import Trade from "./components/order/Trade";
+import Report from "./components/order/Report";
 import FailedRequest from "./components/order/FailedRequest";
 
 let router = (
@@ -22,6 +23,7 @@ let router = (
                 <Route path="/systemSettings" exact component={SystemSettings}/>
                 <Route path="/order" exact component={Order}/>
                 <Route path="/trade" exact component={Trade}/>
+                <Route path="/report" exact component={Report}/>
                 <Route path="/failedRequest" exact component={FailedRequest}/>
                 <Route path="/" component={NotFound}/>
             </Switch>
