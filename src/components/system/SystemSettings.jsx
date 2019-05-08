@@ -56,22 +56,6 @@ class SystemSettings extends Component {
             <Button type="primary" onClick={this.handleUpdateSettings}>提交更新</Button>
             <Row gutter={16}>
                 <Col span={8}>
-                    <Card title="行权周期设置" bordered={true} headStyle={{backgroundColor: '#eff1f4'}}>
-                        <Form.Item label="行权周期(分)">
-                            <Select name="exercisePeriod" value={this.state.settings.exercisePeriod} onChange={(value) => this.handleSelectFilterChange("exercisePeriod", value)}>
-                                <Option value="5">5</Option>
-                                <Option value="10">10</Option>
-                                <Option value="15">15</Option>
-                            </Select>
-                        </Form.Item>
-                        <Form.Item label="交易周期(分))">
-                            <Select name="tradePeriod" value={this.state.settings.tradePeriod} onChange={(value) => this.handleSelectFilterChange("tradePeriod", value)}>
-                                {this.getDefaultOptions(15)}
-                            </Select>
-                        </Form.Item>
-                    </Card>
-                </Col>
-                <Col span={8}>
                     <Card title="机器人设置" bordered={true} headStyle={{backgroundColor: '#eff1f4'}}>
                         <Form.Item label="下单间隔(秒)">
                             <Select name="robotOrderPeriod" value={this.state.settings.robotOrderPeriod} onChange={(value) => this.handleSelectFilterChange("robotOrderPeriod", value)}>

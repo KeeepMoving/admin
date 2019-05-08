@@ -12,10 +12,6 @@ const columns = [{
     dataIndex: 'tradeId',
     width: 200
 }, {
-    title: '订单号',
-    dataIndex: 'orderId',
-    width: 200
-}, {
     title: '产品类型',
     dataIndex: 'category',
     width: 100,
@@ -30,17 +26,18 @@ const columns = [{
         return orderType === "S" ? "卖" : "买";
     }
 }, {
-    title: '倍数',
-    dataIndex: 'multiple',
-    width: 100,
-}, {
-    title: '份数',
-    dataIndex: 'quantity',
-    width: 100,
-}, {
     title: '收益',
     dataIndex: 'earning',
     width: 100,
+    render: earning => {
+        if (earning > 0) {
+            return <span className="gain">{earning}</span>;
+        } else if (earning < 0) {
+            return <span className="loss">{earning}</span>
+        } else {
+            return <span>{earning}</span>
+        }
+    }
 }, {
     title: '创建时间',
     dataIndex: 'createdTime',
@@ -167,7 +164,6 @@ export default class Trade extends Component {
             <div>
                 <Form id="search-container" className="search-container">
                     <Input placeholder="交易号" name="tradeId" value={this.state.filter.tradeId} onChange={this.handleInputFilterChange}/>
-                    <Input placeholder="订单号" name="orderId" value={this.state.filter.orderId} onChange={this.handleInputFilterChange}/>
                     <Select name="category" value={this.state.filter.category} onChange={(value) => this.handleSelectFilterChange("category", value)}>
                         <Option value="All">所有</Option>
                         <Option value="DCO">牛宝</Option>

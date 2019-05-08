@@ -13,6 +13,12 @@ body {
   width: 100%;
   position: fixed;
 }
+.loss {
+  color: red;
+}
+.gain {
+  color: green;
+}
 .ant-select {
   width: 100%;
 }
