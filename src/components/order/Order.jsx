@@ -48,6 +48,13 @@ const columns = [{
     title: '成交份数',
     dataIndex: 'filledQuantity',
     width: 100,
+},{
+    title: '交易时间',
+    dataIndex: 'strikeTime',
+    width: 150,
+    render: strikeTime => {
+        return getFormattedDateString(strikeTime);
+    }
 }, {
     title: '创建时间',
     dataIndex: 'createdTime',

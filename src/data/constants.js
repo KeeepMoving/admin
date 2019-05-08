@@ -1,6 +1,8 @@
 export default {
     api: {
         getSystemSettings: "/aas/api/v1/getSystemSettings",
+        getSystemStatuss: "/aas/api/v1/getSystemStatus",
+        switchSystemStatus: "/aas/api/v1/switchSystemStatus",
         updateSystemSettings: "/aas/api/v1/updateSystemSettings",
         getOrders: "/aas/api/v1/getOrders",
         getFailedRequests: "/aas/api/v1/getFailedRequests",

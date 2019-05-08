@@ -8,7 +8,6 @@ import './services/common/setup';
 import AppContainer from "./components/AppContainer";
 import NotFound from './components/common/NotFound';
 import SystemSettings from "./components/system/SystemSettings";
-import SystemStatus from "./components/system/SystemStatus";
 import Order from "./components/order/Order";
 import Trade from "./components/order/Trade";
 import Report from "./components/order/Report";
@@ -19,7 +18,6 @@ let router = (
         <AppContainer>
             <Switch>
                 <Route path="/" exact component={SystemSettings}/>
-                <Route path="/systemStatus" exact component={SystemStatus}/>
                 <Route path="/systemSettings" exact component={SystemSettings}/>
                 <Route path="/order" exact component={Order}/>
                 <Route path="/trade" exact component={Trade}/>

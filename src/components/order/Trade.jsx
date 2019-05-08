@@ -38,6 +38,13 @@ const columns = [{
             return <span>{earning}</span>
         }
     }
+},{
+    title: '交易时间',
+    dataIndex: 'strikeTime',
+    width: 150,
+    render: strikeTime => {
+        return getFormattedDateString(strikeTime);
+    }
 }, {
     title: '创建时间',
     dataIndex: 'createdTime',

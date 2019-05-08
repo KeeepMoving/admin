@@ -7,6 +7,21 @@ const getSystemSettings = (successHandler) => {
     })
 };
 
+const getSystemStatus = (successHandler) => {
+    http.get(constant.api.getSystemStatuss, null, successHandler,(error) => {
+    })
+};
+
+const switchSystemStatus = (systemStatus, callback) => {
+    http.post(constant.api.switchSystemStatus, systemStatus, () => {
+        message.success('切换成功');
+        callback()
+    }, (error) => {
+        message.success('切换失败');
+        console.log(error);
+    })
+};
+
 const updateSystemSettings = (settings) => {
     http.post(constant.api.updateSystemSettings, settings, () => {
         message.success('更新成功');
@@ -18,5 +33,7 @@ const updateSystemSettings = (settings) => {
 
 export {
     getSystemSettings,
-    updateSystemSettings
+    updateSystemSettings,
+    getSystemStatus,
+    switchSystemStatus
 }

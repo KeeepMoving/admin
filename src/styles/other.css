@@ -1,0 +1,32 @@
+.search-container {
+    padding: 8px !important;
+    background: #fbfbfb;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+}
+.search-container .ant-input {
+    width: 180px;
+    margin: 0 8px 0 0;
+}
+.search-container .ant-select {
+    width: 100px;
+    margin: 0 8px 0 0;
+}
+.search-container .ant-calendar-picker-input {
+    width: 320px;
+    margin: 0 8px 0 0;
+}
+.system-status-container table {
+    border: 1px solid #eff1f4;
+    text-align: center;
+    width: 100%;
+}
+.system-status-container table thead {
+    background-color: #eff1f4;
+}
+.system-status-container table tr {
+    border: 1px solid #eff1f4;
+}
+.system-status-container table td {
+    border: 1px solid #eff1f4;
+}

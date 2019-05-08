@@ -139,11 +139,7 @@ export default class Trade extends Component {
         },
         loading: false,
         filter: {
-            orderId: null,
-            contractCode: null,
-            category: "All",
-            tradeType: "All",
-            orderStatus: "All",
+            exerciseTime: null,
             createdTime: null
         }
     };

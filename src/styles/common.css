@@ -17,26 +17,8 @@ body {
   color: red;
 }
 .gain {
-  color: green;
+  color: #0b9c04;
 }
 .ant-select {
   width: 100%;
-}
-.search-container {
-  padding: 8px !important;
-  background: #fbfbfb;
-  border: 1px solid #d9d9d9;
-  border-radius: 6px;
-}
-.search-container .ant-input {
-  width: 180px;
-  margin: 0 8px 0 0;
-}
-.search-container .ant-select {
-  width: 100px;
-  margin: 0 8px 0 0;
-}
-.search-container .ant-calendar-picker-input {
-  width: 320px;
-  margin: 0 8px 0 0;
 }

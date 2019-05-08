@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
-import {Card, Form, Input, Select, Col, Row, Button, message} from 'antd';
-import {getSystemSettings, updateSystemSettings} from "../../services/system/SystemSettingsService";
+import {Collapse, Card, Form, Input, Select, Col, Row, Button, message} from 'antd';
+import {getSystemSettings, updateSystemSettings, getSystemStatus, switchSystemStatus} from "../../services/system/SystemSettingsService";
 
+const Panel = Collapse.Panel;
 const Option = Select.Option;
 class SystemSettings extends Component {
 
     state = {
         settings: {},
-        bakSettings: {}
+        bakSettings: {},
+        systemStatus: {
+            robot: 'DOWN',
+            mouse: 'DOWN'
+        }
     };
 
     componentDidMount() {
@@ -15,6 +20,11 @@ class SystemSettings extends Component {
             this.setState({
                 settings: response.data,
                 bakSettings: JSON.parse(JSON.stringify(response.data))
+            })
+        });
+        getSystemStatus((response) => {
+            this.setState({
+                systemStatus: response.data,
             })
         });
     }
@@ -43,6 +53,17 @@ class SystemSettings extends Component {
         }
     };
 
+    handleSwitchSystemStatus = (service, action) => {
+        switchSystemStatus({
+            service: service,
+            action: action
+        }, () => getSystemStatus((response) => {
+            this.setState({
+                systemStatus: response.data,
+            })
+        }));
+    };
+
     getDefaultOptions = (max) => {
         let options = [];
         for (let i = 1; i <= max; i++) {
@@ -53,42 +74,81 @@ class SystemSettings extends Component {
 
     render() {
         return <div>
-            <Button type="primary" onClick={this.handleUpdateSettings}>提交更新</Button>
-            <Row gutter={16}>
-                <Col span={8}>
-                    <Card title="机器人设置" bordered={true} headStyle={{backgroundColor: '#eff1f4'}}>
-                        <Form.Item label="下单间隔(秒)">
-                            <Select name="robotOrderPeriod" value={this.state.settings.robotOrderPeriod} onChange={(value) => this.handleSelectFilterChange("robotOrderPeriod", value)}>
-                                {this.getDefaultOptions(10)}
-                            </Select>
-                        </Form.Item>
-                        <Form.Item label="最小倍数率">
-                            <Input name="robotMinMultipleRate" type="number" value={this.state.settings.robotMinMultipleRate} onChange={this.handleInputFilterChange}/>
-                        </Form.Item>
-                        <Form.Item label="最大倍数率">
-                            <Input name="robotMaxMultipleRate" type="number" value={this.state.settings.robotMaxMultipleRate} onChange={this.handleInputFilterChange}/>
-                        </Form.Item>
-                        <Form.Item label="最大下单份数">
-                            <Input name="robotMaxQuantity" type="number" value={this.state.settings.robotMaxQuantity} onChange={this.handleInputFilterChange}/>
-                        </Form.Item>
-                    </Card>
-                </Col>
-                <Col span={8}>
-                    <Card title="小老鼠设置" bordered={true} headStyle={{backgroundColor: '#eff1f4'}}>
-                        <Form.Item label="下单间隔(秒)">
-                            <Select name="mouseOrderPeriod" value={this.state.settings.mouseOrderPeriod} onChange={(value) => this.handleSelectFilterChange("mouseOrderPeriod", value)}>
-                                {this.getDefaultOptions(10)}
-                            </Select>
-                        </Form.Item>
-                        <Form.Item label="最小倍数率">
-                            <Input name="mouseMinMultipleRate" type="number" value={this.state.settings.mouseMinMultipleRate} onChange={this.handleInputFilterChange}/>
-                        </Form.Item>
-                        <Form.Item label="最大下单份数">
-                            <Input name="mouseMaxQuantity" type="number" value={this.state.settings.mouseMaxQuantity} onChange={this.handleInputFilterChange}/>
-                        </Form.Item>
-                    </Card>
-                </Col>
-            </Row>
+            <Collapse defaultActiveKey={['1', '2']}>
+                <Panel header="系统状态" key="1" className="system-status-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>设备</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>机器人</td>
+                                <td><span className={this.state.systemStatus.robot === "ENABLED" ? "gain" : "loss"}>{this.state.systemStatus.robot}</span></td>
+                                <td>
+                                    <Button size='small' disabled={this.state.systemStatus.robot === "DOWN" || this.state.systemStatus.robot === "ENABLED"}
+                                            type="primary" onClick={() => this.handleSwitchSystemStatus("robot", "enable")}>ENABLE</Button> &nbsp;
+                                    <Button size='small' disabled={this.state.systemStatus.robot === "DOWN" || this.state.systemStatus.robot === "DISABLED"}
+                                            type="danger" onClick={() => this.handleSwitchSystemStatus("robot", "disable")}>DISABLE</Button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>小老鼠</td>
+                                <td><span className={this.state.systemStatus.mouse === "ENABLED" ? "gain" : "loss"}>{this.state.systemStatus.mouse}</span></td>
+                                <td>
+                                    <Button size='small' disabled={this.state.systemStatus.mouse === "DOWN" || this.state.systemStatus.mouse === "ENABLED"}
+                                            type="primary" onClick={() => this.handleSwitchSystemStatus("mouse", "enable")}>ENABLE</Button> &nbsp;
+                                    <Button size='small' disabled={this.state.systemStatus.mouse === "DOWN" || this.state.systemStatus.mouse === "DISABLED"}
+                                            type="danger" onClick={() => this.handleSwitchSystemStatus("mouse", "disable")}>DISABLE</Button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </Panel>
+                <Panel header="参数设置" key="2">
+                    <Row gutter={24}>
+                        <Col span={12}>
+                            <Card size='small' title="机器人设置" bordered={true} headStyle={{backgroundColor: '#eff1f4'}}>
+                                <Form.Item label="下单间隔(秒)">
+                                    <Select name="robotOrderPeriod" value={this.state.settings.robotOrderPeriod}
+                                            onChange={(value) => this.handleSelectFilterChange("robotOrderPeriod", value)}>
+                                        {this.getDefaultOptions(10)}
+                                    </Select>
+                                </Form.Item>
+                                <Form.Item label="最小倍数率">
+                                    <Input name="robotMinMultipleRate" type="number" value={this.state.settings.robotMinMultipleRate} onChange={this.handleInputFilterChange}/>
+                                </Form.Item>
+                                <Form.Item label="最大倍数率">
+                                    <Input name="robotMaxMultipleRate" type="number" value={this.state.settings.robotMaxMultipleRate} onChange={this.handleInputFilterChange}/>
+                                </Form.Item>
+                                <Form.Item label="最大下单份数">
+                                    <Input name="robotMaxQuantity" type="number" value={this.state.settings.robotMaxQuantity} onChange={this.handleInputFilterChange}/>
+                                </Form.Item>
+                            </Card>
+                        </Col>
+                        <Col span={12}>
+                            <Card size='small' title="小老鼠设置" bordered={true} headStyle={{backgroundColor: '#eff1f4'}}>
+                                <Form.Item label="下单间隔(秒)">
+                                    <Select name="mouseOrderPeriod" value={this.state.settings.mouseOrderPeriod}
+                                            onChange={(value) => this.handleSelectFilterChange("mouseOrderPeriod", value)}>
+                                        {this.getDefaultOptions(10)}
+                                    </Select>
+                                </Form.Item>
+                                <Form.Item label="最小倍数率">
+                                    <Input name="mouseMinMultipleRate" type="number" value={this.state.settings.mouseMinMultipleRate} onChange={this.handleInputFilterChange}/>
+                                </Form.Item>
+                                <Form.Item label="最大下单份数">
+                                    <Input name="mouseMaxQuantity" type="number" value={this.state.settings.mouseMaxQuantity} onChange={this.handleInputFilterChange}/>
+                                </Form.Item>
+                            </Card>
+                            <Button type="primary" onClick={this.handleUpdateSettings}>提交更新</Button>
+                        </Col>
+                    </Row>
+                </Panel>
+            </Collapse>,
         </div>
     }
 }
