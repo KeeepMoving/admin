@@ -148,7 +148,7 @@ class SystemSettings extends Component {
                         </Col>
                     </Row>
                 </Panel>
-            </Collapse>,
+            </Collapse>
         </div>
     }
 }
