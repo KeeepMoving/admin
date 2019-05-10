@@ -50,7 +50,7 @@ const columns = [{
     width: 100,
 },{
     title: '交易时间',
-    dataIndex: 'strikeTime',
+    dataIndex: 'listTime',
     width: 150,
     render: strikeTime => {
         return getFormattedDateString(strikeTime);
