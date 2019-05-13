@@ -16,8 +16,19 @@ body {
 .loss {
   color: red;
 }
+.loss-blob {
+  color: red;
+  font-weight: bold;
+}
 .gain {
   color: #0b9c04;
+}
+.blob {
+  font-weight: bold;
+}
+.gain-blob {
+  color: #0b9c04;
+  font-weight: bold;
 }
 .ant-select {
   width: 100%;

@@ -10,8 +10,9 @@ import NotFound from './components/common/NotFound';
 import SystemSettings from "./components/system/SystemSettings";
 import Order from "./components/order/Order";
 import Trade from "./components/order/Trade";
-import Report from "./components/order/Report";
 import FailedRequest from "./components/order/FailedRequest";
+import OrderReport from "./components/order/OrderReport";
+import EarningReport from "./components/order/EarningReport";
 
 let router = (
     <Router history={history}>
@@ -21,7 +22,8 @@ let router = (
                 <Route path="/systemSettings" exact component={SystemSettings}/>
                 <Route path="/order" exact component={Order}/>
                 <Route path="/trade" exact component={Trade}/>
-                <Route path="/report" exact component={Report}/>
+                <Route path="/orderReport" exact component={OrderReport}/>
+                <Route path="/EarningReport" exact component={EarningReport}/>
                 <Route path="/failedRequest" exact component={FailedRequest}/>
                 <Route path="/" component={NotFound}/>
             </Switch>

@@ -1,118 +1,80 @@
 import React, {Component} from 'react';
-import { Table, Form, Select, DatePicker, Button } from 'antd';
+import { Table, Form, DatePicker, Button } from 'antd';
 import moment from 'moment';
 import constants from '../../data/constants';
-import {getReports} from "../../services/order/ReportService"
+import {getOrderReports} from "../../services/order/ReportService"
 import {getFormattedDateString, getUuid} from "../../utils/commonUitl";
 
 const {RangePicker} = DatePicker;
 const columns = [{
-    title: '牛买量',
+    title: '牛宝买单下单量',
     dataIndex: 'dcoBOrderQuantity',
     width: 60
 }, {
-    title: '牛买成交量',
+    title: '牛宝买单成交量',
     dataIndex: 'dcoBFilledQuantity',
     width: 70
 }, {
-    title: '牛买部分成交量',
+    title: '牛宝买单部分成交量',
     dataIndex: 'dcoBPartialFilledQuantity',
     width: 80
 }, {
-    title: '熊买量',
+    title: '熊宝买单下单量',
     dataIndex: 'dpoBOrderQuantity',
     width: 70
 }, {
-    title: '熊买成交量',
+    title: '熊宝买单成交量',
     dataIndex: 'dpoBFilledQuantity',
     width: 70
 }, {
-    title: '熊买部分成交量',
-    dataIndex: 'dpoBEarning',
+    title: '熊宝买单部分成交量',
+    dataIndex: 'dpoBPartialFilledQuantity',
     width: 80
 }, {
-    title: '牛卖量',
+    title: '牛宝卖单下单量',
     dataIndex: 'dcoSOrderQuantity',
     width: 70
 }, {
-    title: '牛卖成交量',
+    title: '牛宝卖单成交量',
     dataIndex: 'dcoSFilledQuantity',
     width: 70
 }, {
-    title: '牛卖分成交量',
+    title: '牛宝卖单部分成交量',
     dataIndex: 'dcoSPartialFilledQuantity',
     width: 80
 }, {
-    title: '牛卖撤单量',
+    title: '牛宝卖单撤单量',
     dataIndex: 'dcoSCanceledQuantity',
     width: 70
 }, {
-    title: '熊卖量',
+    title: '熊宝卖单下单量',
     dataIndex: 'dpoSOrderQuantity',
     width: 70
 }, {
-    title: '熊卖成交量',
+    title: '熊宝卖单成交量',
     dataIndex: 'dpoSFilledQuantity',
     width: 70
 }, {
-    title: '熊卖部分成交量',
+    title: '熊宝卖单部分成交量',
     dataIndex: 'dpoSPartialFilledQuantity',
     width: 80
 }, {
-    title: '熊卖撤单量',
+    title: '熊宝卖单撤单量',
     dataIndex: 'dpoSCanceledQuantity',
     width: 70
 }, {
-    title: '牛买收益',
-    dataIndex: 'dcoBEarning',
-    width: 80,
-    render: dcoBEarning => {
-        if (dcoBEarning > 0) {
-            return <span className="gain">{dcoBEarning}</span>;
-        } else if (dcoBEarning < 0) {
-            return <span className="loss">{dcoBEarning}</span>
-        } else {
-            return <span>{dcoBEarning}</span>
-        }
+    title: '机器人下单总量',
+    dataIndex: 'robotQuantity',
+    width: 90,
+    render: robotQuantity => {
+        return <span className="blob">{robotQuantity}</span>;
     }
 }, {
-    title: '熊买收益',
-    dataIndex: 'dpoBEarning',
-    width: 80,
-    render: dpoBEarning => {
-        if (dpoBEarning > 0) {
-            return <span className="gain">{dpoBEarning}</span>;
-        } else if (dpoBEarning < 0) {
-            return <span className="loss">{dpoBEarning}</span>
-        } else {
-            return <span>{dpoBEarning}</span>
-        }
-    }
-}, {
-    title: '牛卖收益',
-    dataIndex: 'dcoSEarning',
-    width: 80,
-    render: dcoSEarning => {
-        if (dcoSEarning > 0) {
-            return <span className="gain">{dcoSEarning}</span>;
-        } else if (dcoSEarning < 0) {
-            return <span className="loss">{dcoSEarning}</span>
-        } else {
-            return <span>{dcoSEarning}</span>
-        }
-    }
-}, {
-    title: '熊卖收益',
-    dataIndex: 'dpoSEarning',
-    width: 80,
-    render: dpoSEarning => {
-        if (dpoSEarning > 0) {
-            return <span className="gain">{dpoSEarning}</span>;
-        } else if (dpoSEarning < 0) {
-            return <span className="loss">{dpoSEarning}</span>
-        } else {
-            return <span>{dpoSEarning}</span>
-        }
+    title: '小老鼠下单总量',
+    dataIndex: 'mouseQuantity',
+    width: 90,
+    render: mouseQuantity => {
+        return <span className="blob">{mouseQuantity}</span>;
     }
 }, {
     title: '行权时间',
@@ -130,7 +92,7 @@ const columns = [{
     }
 }];
 
-export default class Trade extends Component {
+export default class OrderReport extends Component {
     state = {
         data: [],
         pagination: {
@@ -207,9 +169,8 @@ export default class Trade extends Component {
     };
 
     fetch = (params = {}) => {
-        console.log('params:', params);
         this.setState({ loading: true });
-        getReports({
+        getOrderReports({
             pageSize: this.state.pagination.pageSize,
             pageIndex: this.state.pagination.current,
                 ...params,

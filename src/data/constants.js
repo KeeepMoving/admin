@@ -7,7 +7,9 @@ export default {
         getOrders: "/aas/api/v1/getOrders",
         getFailedRequests: "/aas/api/v1/getFailedRequests",
         getTrades: "/aas/api/v1/getTrades",
-        getReports: "/aas/api/v1/getReports"
+        getReports: "/aas/api/v1/getReports",
+        getEarningReports: "/aas/api/v1/getEarningReports",
+        getOrderReports: "/aas/api/v1/getOrderReports",
     },
     page: {
         pageSize: 15
