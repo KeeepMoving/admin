@@ -30,7 +30,7 @@ const getTotalEarningRender = (value) => {
 const columns = [{
     title: '牛买收益',
     dataIndex: 'dcoBEarning',
-    width: 60,
+    width: 80,
     render: dcoBEarning => {
         return getEarningRender(dcoBEarning);
     }
@@ -44,23 +44,30 @@ const columns = [{
 }, {
     title: '熊买收益',
     dataIndex: 'dpoBEarning',
-    width: 70,
+    width: 80,
     render: dpoBEarning => {
         return getEarningRender(dpoBEarning);
     }
 }, {
     title: '熊卖收益',
     dataIndex: 'dpoSEarning',
-    width: 70,
+    width: 80,
     render: dpoSEarning => {
         return getEarningRender(dpoSEarning);
     }
 }, {
-    title: '机器人冻结保证金',
-    dataIndex: 'robotCost',
+    title: '机器人保证金',
+    dataIndex: 'robotMargin',
     width: 80,
-    render: robotCost => {
-        return formatNumber(robotCost);
+    render: robotMargin => {
+        return formatNumber(robotMargin);
+    }
+}, {
+    title: '机器人权利金',
+    dataIndex: 'robotPremium',
+    width: 80,
+    render: robotPremium => {
+        return formatNumber(robotPremium);
     }
 }, {
     title: '机器人收益',
@@ -85,10 +92,10 @@ const columns = [{
     }
 }, {
     title: '小老鼠权利金',
-    dataIndex: 'mouseCost',
+    dataIndex: 'mousePremium',
     width: 80,
-    render: mouseCost => {
-        return formatNumber(mouseCost);
+    render: mousePremium => {
+        return formatNumber(mousePremium);
     }
 }, {
     title: '小老鼠收益',
@@ -114,7 +121,7 @@ const columns = [{
 }, {
     title: '总收益',
     dataIndex: 'totalEarning',
-    width: 90,
+    width: 80,
     render: totalEarning => {
         return getTotalEarningRender(totalEarning);
     }
