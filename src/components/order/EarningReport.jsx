@@ -6,20 +6,23 @@ import {getEarningReports} from "../../services/order/ReportService"
 import {getFormattedDateString, getUuid} from "../../utils/commonUitl";
 
 const {RangePicker} = DatePicker;
+const formatNumber = (value) => {
+    return Number(value).toFixed(4);
+};
 const getEarningRender = (value) => {
     if (value > 0) {
-        return <span className="gain">{value}</span>;
+        return <span className="gain">{formatNumber(value)}</span>;
     } else if (value < 0) {
-        return <span className="loss">{value}</span>
+        return <span className="loss">{formatNumber(value)}</span>
     } else {
         return <span>{value}</span>
     }
 };
 const getTotalEarningRender = (value) => {
     if (value > 0) {
-        return <span className="gain-blob">{value}</span>;
+        return <span className="gain-blob">{formatNumber(value)}</span>;
     } else if (value < 0) {
-        return <span className="loss-blob">{value}</span>
+        return <span className="loss-blob">{formatNumber(value)}</span>
     } else {
         return <span>{value}</span>
     }
@@ -53,9 +56,12 @@ const columns = [{
         return getEarningRender(dpoSEarning);
     }
 }, {
-    title: '机器人权利金',
+    title: '机器人冻结保证金',
     dataIndex: 'robotCost',
     width: 80,
+    render: robotCost => {
+        return formatNumber(robotCost);
+    }
 }, {
     title: '机器人收益',
     dataIndex: 'robotEarning',
@@ -67,8 +73,8 @@ const columns = [{
     title: '机器人手续费',
     dataIndex: 'robotFee',
     width: 80,
-    render: robotEarning => {
-        return getTotalEarningRender(robotEarning);
+    render: robotFee => {
+        return formatNumber(robotFee);
     }
 }, {
     title: '机器人总收益',
@@ -81,6 +87,9 @@ const columns = [{
     title: '小老鼠权利金',
     dataIndex: 'mouseCost',
     width: 80,
+    render: mouseCost => {
+        return formatNumber(mouseCost);
+    }
 }, {
     title: '小老鼠收益',
     dataIndex: 'mouseEarning',
@@ -92,8 +101,8 @@ const columns = [{
     title: '小老鼠手续费',
     dataIndex: 'mouseFee',
     width: 80,
-    render: mouseEarning => {
-        return getTotalEarningRender(mouseEarning);
+    render: mouseFee => {
+        return formatNumber(mouseFee);
     }
 }, {
     title: '小老鼠总收益',

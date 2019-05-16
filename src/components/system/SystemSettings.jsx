@@ -109,23 +109,6 @@ class SystemSettings extends Component {
                     </table>
                 </Panel>
                 <Panel header="参数设置" key="2">
-                    <Form layout="inline">
-                        <Form.Item label="下单策略" >
-                            <Select name="orderStrategy" value={this.state.settings.orderStrategy}
-                                    onChange={(value) => this.handleSelectFilterChange("orderStrategy", value)} style={{width: 150}}>
-                                <Option value="ALL_INCOME">全头寸</Option>
-                                <Option value="QUANTITY_LIMIT">份数限制</Option>
-                            </Select>
-                        </Form.Item>
-                        <Form.Item label="最小份数" >
-                            <Input disabled={this.state.settings.orderStrategy === 'ALL_INCOME'} name="minQuantity" type="number"
-                                   value={this.state.settings.minQuantity} onChange={this.handleInputFilterChange}/>
-                        </Form.Item>
-                        <Form.Item label="最大份数">
-                            <Input disabled={this.state.settings.orderStrategy === 'ALL_INCOME'} name="maxQuantity" type="number"
-                                   value={this.state.settings.maxQuantity} onChange={this.handleInputFilterChange}/>
-                        </Form.Item>
-                    </Form>
                     <Row gutter={24}>
                         <Col span={12}>
                             <Card size='small' title="机器人设置" bordered={true} headStyle={{backgroundColor: '#eff1f4'}}>
@@ -140,6 +123,9 @@ class SystemSettings extends Component {
                                 </Form.Item>
                                 <Form.Item label="最大倍数率">
                                     <Input name="robotMaxMultipleRate" type="number" value={this.state.settings.robotMaxMultipleRate} onChange={this.handleInputFilterChange}/>
+                                </Form.Item>
+                                <Form.Item label="最小下单份数">
+                                    <Input name="robotMinQuantity" type="number" value={this.state.settings.robotMinQuantity} onChange={this.handleInputFilterChange}/>
                                 </Form.Item>
                                 <Form.Item label="最大下单份数">
                                     <Input name="robotMaxQuantity" type="number" value={this.state.settings.robotMaxQuantity} onChange={this.handleInputFilterChange}/>
@@ -156,6 +142,9 @@ class SystemSettings extends Component {
                                 </Form.Item>
                                 <Form.Item label="最小倍数率">
                                     <Input name="mouseMinMultipleRate" type="number" value={this.state.settings.mouseMinMultipleRate} onChange={this.handleInputFilterChange}/>
+                                </Form.Item>
+                                <Form.Item label="最小下单份数">
+                                    <Input name="mouseMinQuantity" type="number" value={this.state.settings.mouseMinQuantity} onChange={this.handleInputFilterChange}/>
                                 </Form.Item>
                                 <Form.Item label="最大下单份数">
                                     <Input name="mouseMaxQuantity" type="number" value={this.state.settings.mouseMaxQuantity} onChange={this.handleInputFilterChange}/>
