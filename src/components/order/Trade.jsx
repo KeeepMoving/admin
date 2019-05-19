@@ -138,7 +138,7 @@ export default class Trade extends Component {
                 orderId: null,
                 contractCode: null,
                 category: "All",
-                orderType: "All",
+                tradeType: "All",
                 orderStatus: "All",
                 createdTime: null
             }
