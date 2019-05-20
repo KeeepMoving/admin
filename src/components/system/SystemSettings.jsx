@@ -10,8 +10,14 @@ class SystemSettings extends Component {
         settings: {},
         bakSettings: {},
         systemStatus: {
-            robot: 'DOWN',
-            mouse: 'DOWN'
+            robot: {
+                systemStatus: 'DOWN',
+                income: 0
+            },
+            mouse: {
+                systemStatus: 'DOWN',
+                income: 0
+            }
         }
     };
 
@@ -81,27 +87,30 @@ class SystemSettings extends Component {
                             <tr>
                                 <th>设备</th>
                                 <th>状态</th>
+                                <th>余额</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>机器人</td>
-                                <td><span className={this.state.systemStatus.robot === "ENABLED" ? "gain" : "loss"}>{this.state.systemStatus.robot}</span></td>
+                                <td><span className={this.state.systemStatus.robot.systemStatus === "ENABLED" ? "gain" : "loss"}>{this.state.systemStatus.robot.systemStatus}</span></td>
+                                <td><span>{this.state.systemStatus.robot.income}</span></td>
                                 <td>
-                                    <Button size='small' disabled={this.state.systemStatus.robot === "DOWN" || this.state.systemStatus.robot === "ENABLED"}
+                                    <Button size='small' disabled={this.state.systemStatus.robot.systemStatus === "DOWN" || this.state.systemStatus.robot.systemStatus === "ENABLED"}
                                             type="primary" onClick={() => this.handleSwitchSystemStatus("robot", "enable")}>ENABLE</Button> &nbsp;
-                                    <Button size='small' disabled={this.state.systemStatus.robot === "DOWN" || this.state.systemStatus.robot === "DISABLED"}
+                                    <Button size='small' disabled={this.state.systemStatus.robot.systemStatus === "DOWN" || this.state.systemStatus.robot.systemStatus === "DISABLED"}
                                             type="danger" onClick={() => this.handleSwitchSystemStatus("robot", "disable")}>DISABLE</Button>
                                 </td>
                             </tr>
                             <tr>
                                 <td>小老鼠</td>
-                                <td><span className={this.state.systemStatus.mouse === "ENABLED" ? "gain" : "loss"}>{this.state.systemStatus.mouse}</span></td>
+                                <td><span className={this.state.systemStatus.mouse.systemStatus === "ENABLED" ? "gain" : "loss"}>{this.state.systemStatus.mouse.systemStatus}</span></td>
+                                <td><span>{this.state.systemStatus.mouse.income}</span></td>
                                 <td>
-                                    <Button size='small' disabled={this.state.systemStatus.mouse === "DOWN" || this.state.systemStatus.mouse === "ENABLED"}
+                                    <Button size='small' disabled={this.state.systemStatus.mouse.systemStatus === "DOWN" || this.state.systemStatus.mouse.systemStatus === "ENABLED"}
                                             type="primary" onClick={() => this.handleSwitchSystemStatus("mouse", "enable")}>ENABLE</Button> &nbsp;
-                                    <Button size='small' disabled={this.state.systemStatus.mouse === "DOWN" || this.state.systemStatus.mouse === "DISABLED"}
+                                    <Button size='small' disabled={this.state.systemStatus.mouse.systemStatus === "DOWN" || this.state.systemStatus.mouse.systemStatus === "DISABLED"}
                                             type="danger" onClick={() => this.handleSwitchSystemStatus("mouse", "disable")}>DISABLE</Button>
                                 </td>
                             </tr>
