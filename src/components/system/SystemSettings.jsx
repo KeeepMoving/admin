@@ -139,6 +139,9 @@ class SystemSettings extends Component {
                                 <Form.Item label="最大下单份数">
                                     <Input name="robotMaxQuantity" type="number" value={this.state.settings.robotMaxQuantity} onChange={this.handleInputFilterChange}/>
                                 </Form.Item>
+                                <Form.Item label="最大头寸">
+                                    <Input name="robotMaxMargin" type="number" value={this.state.settings.robotMaxMargin} onChange={this.handleInputFilterChange}/>
+                                </Form.Item>
                             </Card>
                         </Col>
                         <Col span={12}>
@@ -157,6 +160,9 @@ class SystemSettings extends Component {
                                 </Form.Item>
                                 <Form.Item label="最大下单份数">
                                     <Input name="mouseMaxQuantity" type="number" value={this.state.settings.mouseMaxQuantity} onChange={this.handleInputFilterChange}/>
+                                </Form.Item>
+                                <Form.Item label="最大头寸">
+                                    <Input name="mouseMaxPremium" type="number" value={this.state.settings.mouseMaxPremium} onChange={this.handleInputFilterChange}/>
                                 </Form.Item>
                             </Card>
                             <Button type="primary" onClick={this.handleUpdateSettings}>提交更新</Button>

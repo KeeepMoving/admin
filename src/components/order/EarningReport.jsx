@@ -135,7 +135,6 @@ const columns = [{
 }, {
     title: '创建时间',
     dataIndex: 'createdTime',
-    width: 150,
     render: createdTime => {
         return getFormattedDateString(createdTime);
     }
@@ -234,6 +233,19 @@ export default class EarningReport extends Component {
         });
     };
 
+    footer = () => {
+        let robot_total_earning = 0;
+        let mouse_total_earning = 0;
+        this.state.data.forEach((item) => {
+            robot_total_earning += item.robotTotalEarning;
+            mouse_total_earning += item.mouseTotalEarning;
+        });
+        return <div>
+            <span>机器人合计收益: {getTotalEarningRender(robot_total_earning)}</span>&nbsp;&nbsp;
+            <span>小老鼠合计收益: {getTotalEarningRender(mouse_total_earning)}</span>
+        </div>;
+    };
+
     render() {
         let filterElement = document.getElementById("search-container");
         let filterElementHeight = filterElement === null ? 0 : filterElement.offsetHeight;
@@ -255,6 +267,7 @@ export default class EarningReport extends Component {
                     onChange={this.handleTableChange}
                     scroll={{ y: tableHeight }}
                     size="small"
+                    footer={this.footer}
                 />
             </div>
         );
