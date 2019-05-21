@@ -58,63 +58,63 @@ const columns = [{
 }, {
     title: '机器人保证金',
     dataIndex: 'robotMargin',
-    width: 80,
+    width: 100,
     render: robotMargin => {
         return formatNumber(robotMargin);
     }
 }, {
     title: '机器人权利金',
     dataIndex: 'robotPremium',
-    width: 80,
+    width: 100,
     render: robotPremium => {
         return formatNumber(robotPremium);
     }
 }, {
     title: '机器人收益',
     dataIndex: 'robotEarning',
-    width: 80,
+    width: 100,
     render: robotEarning => {
         return getTotalEarningRender(robotEarning);
     }
 }, {
     title: '机器人手续费',
     dataIndex: 'robotFee',
-    width: 80,
+    width: 100,
     render: robotFee => {
         return formatNumber(robotFee);
     }
 }, {
     title: '机器人总收益',
     dataIndex: 'robotTotalEarning',
-    width: 80,
+    width: 100,
     render: robotEarning => {
         return getTotalEarningRender(robotEarning);
     }
 }, {
     title: '小老鼠权利金',
     dataIndex: 'mousePremium',
-    width: 80,
+    width: 100,
     render: mousePremium => {
         return formatNumber(mousePremium);
     }
 }, {
     title: '小老鼠收益',
     dataIndex: 'mouseEarning',
-    width: 80,
+    width: 100,
     render: mouseEarning => {
         return getTotalEarningRender(mouseEarning);
     }
 }, {
     title: '小老鼠手续费',
     dataIndex: 'mouseFee',
-    width: 80,
+    width: 100,
     render: mouseFee => {
         return formatNumber(mouseFee);
     }
 }, {
     title: '小老鼠总收益',
     dataIndex: 'mouseTotalEarning',
-    width: 80,
+    width: 100,
     render: mouseEarning => {
         return getTotalEarningRender(mouseEarning);
     }
