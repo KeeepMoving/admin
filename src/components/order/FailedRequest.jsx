@@ -16,14 +16,22 @@ const columns = [{
     dataIndex: 'category',
     width: 100,
     render: category => {
-        return category === "DCO" ? "牛宝" : "熊宝";
+        if (category) {
+            return category === "DCO" ? "牛宝" : "熊宝";
+        } else {
+            return category;
+        }
     }
 },{
     title: '订单类型',
     dataIndex: 'orderType',
     width: 100,
     render: orderType => {
-        return orderType === "S" ? "卖" : "买";
+        if (orderType) {
+            return orderType === "S" ? "卖" : "买";
+        } else {
+            return orderType;
+        }
     }
 }, {
     title: '倍数',
