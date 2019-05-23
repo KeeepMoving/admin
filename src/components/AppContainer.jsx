@@ -34,10 +34,12 @@ export default class AppContainer extends Component {
                         <SubMenu key="sub2" title={<span><Icon type="hdd" /><span>订单管理</span></span>}>
                             <Menu.Item key="2" onClick={() => this.switchItem("order")}>订单</Menu.Item>
                             <Menu.Item key="3" onClick={() => this.switchItem("trade")}>交易</Menu.Item>
-                            <Menu.Item key="4" onClick={() => this.switchItem("orderReport")}>订单报表</Menu.Item>
-                            <Menu.Item key="5" onClick={() => this.switchItem("earningReport")}>收益报表</Menu.Item>
-                            <Menu.Item key="6" onClick={() => this.switchItem("contractReport")}>合约报表</Menu.Item>
-                            <Menu.Item key="7" onClick={() => this.switchItem("failedRequest")}>异常请求</Menu.Item>
+                            <Menu.Item key="4" onClick={() => this.switchItem("failedRequest")}>异常请求</Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="sub3" title={<span><Icon type="table" /><span>报表管理</span></span>}>
+                            <Menu.Item key="5" onClick={() => this.switchItem("orderReport")}>订单报表</Menu.Item>
+                            <Menu.Item key="6" onClick={() => this.switchItem("earningReport")}>收益报表</Menu.Item>
+                            <Menu.Item key="7" onClick={() => this.switchItem("contractReport")}>合约报表</Menu.Item>
                         </SubMenu>
                     </Menu>
                 </Sider>

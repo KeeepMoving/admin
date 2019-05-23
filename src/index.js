@@ -11,9 +11,9 @@ import SystemSettings from "./components/system/SystemSettings";
 import Order from "./components/order/Order";
 import Trade from "./components/order/Trade";
 import FailedRequest from "./components/order/FailedRequest";
-import OrderReport from "./components/order/OrderReport";
-import EarningReport from "./components/order/EarningReport";
-import ContractReport from "./components/order/ContractReport";
+import OrderReport from "./components/report/OrderReport";
+import EarningReport from "./components/report/EarningReport";
+import ContractReport from "./components/report/ContractReport";
 
 let router = (
     <Router history={history}>
