@@ -1,7 +1,18 @@
 import axios from 'axios';
+import {getToken} from "./sessionStorage";
 
 //TODO enhance
 const instance = axios.create();
+
+instance.interceptors.request.use(
+    config => {
+        let token = getToken() || "";
+        config.headers["Authorization"] = "Bearer_" + token;
+        return config
+    },
+    error => {
+        return Promise.reject(error)
+    });
 
 function get(url, data, successHandler, errorHander) {
     instance.get(url, {params: data})

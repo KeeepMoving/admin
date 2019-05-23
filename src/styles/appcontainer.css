@@ -16,3 +16,15 @@
   height: 32px;
   margin: 16px;
 }
+
+.login-container {
+    max-width: 300px;
+    border: 1px solid #a5a5a6;
+    margin: 200px auto;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.login-container .login-form-button {
+    width: 100%;
+}

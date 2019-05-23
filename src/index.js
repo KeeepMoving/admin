@@ -14,12 +14,14 @@ import FailedRequest from "./components/order/FailedRequest";
 import OrderReport from "./components/report/OrderReport";
 import EarningReport from "./components/report/EarningReport";
 import ContractReport from "./components/report/ContractReport";
+import Login from "./components/user/Login";
 
 let router = (
     <Router history={history}>
         <AppContainer>
             <Switch>
                 <Route path="/" exact component={SystemSettings}/>
+                <Route path="/login" exact component={Login}/>
                 <Route path="/systemSettings" exact component={SystemSettings}/>
                 <Route path="/order" exact component={Order}/>
                 <Route path="/trade" exact component={Trade}/>

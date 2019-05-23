@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Layout, Menu, Icon} from 'antd';
 import history from '../services/common/history';
+import {isLogin} from "../services/common/sessionStorage";
 
 const {Header, Sider, Content, Footer} = Layout;
 const SubMenu = Menu.SubMenu;
@@ -22,9 +23,13 @@ export default class AppContainer extends Component {
     };
 
     render() {
+        let login = isLogin();
+        if (!login) {
+            history.replace("/login")
+        }
         return <div id="app-container">
             <Layout>
-                <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+                <Sider trigger={null} collapsible collapsed={this.state.collapsed} hidden={!login}>
                     {/*<div className="logo"> <img src={process.env.PUBLIC_URL + '/logo.png'} style={{height: 20, width: 120}}/>Admin</div>*/}
                     <div className="logo">拍一拍 ADMIN</div>
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
@@ -44,8 +49,8 @@ export default class AppContainer extends Component {
                     </Menu>
                 </Sider>
                 <Layout>
-                    <Header style={{background: '#291024', padding: 0, transition: 'all 0.2'}}>
-                        <Icon className="trigger" type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} onClick={this.toggle}/>
+                    <Header style={{background: '#291024', padding: 0, transition: 'all 0.2'}} >
+                        <Icon className="trigger" type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} onClick={this.toggle} hidden={!login}/>
                     </Header>
                     <Content style={{margin: '24px 16px 0 16px', padding: '24px 24px 0 24px', background: '#fff', minHeight: 280}}>
                         {this.props.children}

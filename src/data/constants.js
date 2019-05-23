@@ -11,6 +11,8 @@ export default {
         getEarningReports: "/aas/api/v1/getEarningReports",
         getOrderReports: "/aas/api/v1/getOrderReports",
         getContractReports: "/aas/api/v1/getContractReports",
+        loginUser: "/aas/api/v1/login",
+        logoutUser: "/aas/api/v1/logout",
     },
     page: {
         pageSize: 15
