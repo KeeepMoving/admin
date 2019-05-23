@@ -10,6 +10,7 @@ export default {
         getReports: "/aas/api/v1/getReports",
         getEarningReports: "/aas/api/v1/getEarningReports",
         getOrderReports: "/aas/api/v1/getOrderReports",
+        getContractReports: "/aas/api/v1/getContractReports",
     },
     page: {
         pageSize: 15

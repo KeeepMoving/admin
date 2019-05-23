@@ -13,6 +13,7 @@ import Trade from "./components/order/Trade";
 import FailedRequest from "./components/order/FailedRequest";
 import OrderReport from "./components/order/OrderReport";
 import EarningReport from "./components/order/EarningReport";
+import ContractReport from "./components/order/ContractReport";
 
 let router = (
     <Router history={history}>
@@ -23,7 +24,8 @@ let router = (
                 <Route path="/order" exact component={Order}/>
                 <Route path="/trade" exact component={Trade}/>
                 <Route path="/orderReport" exact component={OrderReport}/>
-                <Route path="/EarningReport" exact component={EarningReport}/>
+                <Route path="/earningReport" exact component={EarningReport}/>
+                <Route path="/contractReport" exact component={ContractReport}/>
                 <Route path="/failedRequest" exact component={FailedRequest}/>
                 <Route path="/" component={NotFound}/>
             </Switch>

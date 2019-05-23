@@ -36,7 +36,8 @@ export default class AppContainer extends Component {
                             <Menu.Item key="3" onClick={() => this.switchItem("trade")}>交易</Menu.Item>
                             <Menu.Item key="4" onClick={() => this.switchItem("orderReport")}>订单报表</Menu.Item>
                             <Menu.Item key="5" onClick={() => this.switchItem("earningReport")}>收益报表</Menu.Item>
-                            <Menu.Item key="6" onClick={() => this.switchItem("failedRequest")}>异常请求</Menu.Item>
+                            <Menu.Item key="6" onClick={() => this.switchItem("contractReport")}>合约报表</Menu.Item>
+                            <Menu.Item key="7" onClick={() => this.switchItem("failedRequest")}>异常请求</Menu.Item>
                         </SubMenu>
                     </Menu>
                 </Sider>
