@@ -41,7 +41,7 @@ const columns = [{
 },{
     title: '行权时间',
     dataIndex: 'strikeTime',
-    width: 150,
+    width: 180,
     render: strikeTime => {
         return getFormattedDateString(strikeTime);
     }

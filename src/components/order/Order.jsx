@@ -51,7 +51,7 @@ const columns = [{
 },{
     title: '交易时间',
     dataIndex: 'listTime',
-    width: 150,
+    width: 180,
     render: strikeTime => {
         return getFormattedDateString(strikeTime);
     }

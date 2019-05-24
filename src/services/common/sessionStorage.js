@@ -27,5 +27,6 @@ export {
     addUser,
     isLogin,
     removeUser,
-    getToken
+    getToken,
+    getUsername
 }

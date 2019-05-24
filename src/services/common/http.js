@@ -1,5 +1,7 @@
 import axios from 'axios';
-import {getToken} from "./sessionStorage";
+import history from '../../services/common/history';
+import {getToken, removeUser} from "./sessionStorage";
+import {message} from "antd";
 
 //TODO enhance
 const instance = axios.create();
@@ -14,7 +16,23 @@ instance.interceptors.request.use(
         return Promise.reject(error)
     });
 
-function get(url, data, successHandler, errorHander) {
+instance.interceptors.response.use(
+    response => {
+        return response
+    },
+    error => {
+        if (error.response) {
+            switch (error.response.status) {
+                case 401:
+                    message.error('登录过期，请重新登录！');
+                    removeUser();
+                    history.push("/login");
+            }
+        }
+        return Promise.reject(error.response.data)
+    });
+
+function get(url, data, successHandler, errorHandler) {
     instance.get(url, {params: data})
         .then(function (response) {
             console.log(response);
@@ -24,8 +42,8 @@ function get(url, data, successHandler, errorHander) {
         })
         .catch(function (error) {
             console.log(error);
-            if(errorHander) {
-                errorHander(error)
+            if(errorHandler) {
+                errorHandler(error)
             }
         });
 }

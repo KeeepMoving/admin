@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Layout, Menu, Icon} from 'antd';
 import history from '../services/common/history';
-import {isLogin} from "../services/common/sessionStorage";
+import {getUsername, isLogin} from "../services/common/sessionStorage";
 
 const {Header, Sider, Content, Footer} = Layout;
 const SubMenu = Menu.SubMenu;
@@ -10,6 +10,7 @@ export default class AppContainer extends Component {
 
     state = {
         collapsed: false,
+        isLogin: false
     };
 
     toggle = () => {
@@ -22,15 +23,24 @@ export default class AppContainer extends Component {
         history.push("/" + item);
     };
 
-    render() {
+    componentDidMount() {
         let login = isLogin();
+        this.updateLoginStatus(login);
         if (!login) {
-            history.replace("/login")
+            history.push("/login");
         }
+    }
+
+    updateLoginStatus = (status) => {
+        this.setState({
+            isLogin: status
+        });
+    };
+
+    render() {
         return <div id="app-container">
             <Layout>
-                <Sider trigger={null} collapsible collapsed={this.state.collapsed} hidden={!login}>
-                    {/*<div className="logo"> <img src={process.env.PUBLIC_URL + '/logo.png'} style={{height: 20, width: 120}}/>Admin</div>*/}
+                <Sider trigger={null} collapsible collapsed={this.state.collapsed} hidden={!this.state.isLogin}>
                     <div className="logo">拍一拍 ADMIN</div>
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                         <SubMenu key="sub1" title={<span><Icon type="setting" /><span>系统管理</span></span>}>
@@ -50,7 +60,8 @@ export default class AppContainer extends Component {
                 </Sider>
                 <Layout>
                     <Header style={{background: '#291024', padding: 0, transition: 'all 0.2'}} >
-                        <Icon className="trigger" type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} onClick={this.toggle} hidden={!login}/>
+                        <Icon className="trigger" type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} onClick={this.toggle} hidden={!this.state.isLogin}/>
+                        <Icon type="user" />{getUsername()}
                     </Header>
                     <Content style={{margin: '24px 16px 0 16px', padding: '24px 24px 0 24px', background: '#fff', minHeight: 280}}>
                         {this.props.children}

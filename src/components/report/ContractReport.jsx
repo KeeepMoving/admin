@@ -46,14 +46,14 @@ const columns = [{
 }, {
     title: '行权时间',
     dataIndex: 'exerciseTime',
-    width: 150,
+    width: 180,
     render: exerciseTime => {
         return getFormattedDateString(exerciseTime);
     }
 }, {
     title: '创建时间',
     dataIndex: 'createdTime',
-    width: 150,
+    width: 180,
     render: createdTime => {
         return getFormattedDateString(createdTime);
     }

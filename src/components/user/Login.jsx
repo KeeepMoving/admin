@@ -6,14 +6,15 @@ import {loginUser} from "../../services/user/UserService";
 class Login extends Component {
 
     state = {
-        username: "admin",
-        password: "Pnply0523!"
+        username: "",
+        password: ""
     };
 
     handleSubmit = e => {
         e.preventDefault();
         loginUser(this.state,() => {
             history.replace("/");
+            window.location.reload();
         });
     };
 
