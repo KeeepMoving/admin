@@ -165,6 +165,9 @@ class SystemSettings extends Component {
                                     <Input name="mouseMaxPremium" type="number" value={this.state.settings.mouseMaxPremium} onChange={this.handleInputFilterChange}/>
                                 </Form.Item>
                             </Card>
+                            <Form.Item label="未行权概率">
+                                <Input name="expiredProb" type="number" value={this.state.settings.expiredProb} onChange={this.handleInputFilterChange}/>
+                            </Form.Item>
                             <Button type="primary" onClick={this.handleUpdateSettings}>提交更新</Button>
                         </Col>
                     </Row>
