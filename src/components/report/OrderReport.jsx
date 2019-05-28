@@ -9,7 +9,7 @@ const {RangePicker} = DatePicker;
 const columns = [{
     title: '牛宝买单下单量',
     dataIndex: 'dcoBOrderQuantity',
-    width: 60
+    width: 70
 }, {
     title: '牛宝买单成交量',
     dataIndex: 'dcoBFilledQuantity',
@@ -204,7 +204,7 @@ export default class OrderReport extends Component {
                     pagination={this.state.pagination}
                     loading={this.state.loading}
                     onChange={this.handleTableChange}
-                    scroll={{ y: tableHeight }}
+                    scroll={{ x: 1500, y: tableHeight }}
                     size="small"
                 />
             </div>

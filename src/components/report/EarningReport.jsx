@@ -126,17 +126,19 @@ const columns = [{
         return getTotalEarningRender(totalEarning);
     }
 }, {
-    title: '行权时间',
-    dataIndex: 'exerciseTime',
-    width: 180,
-    render: exerciseTime => {
-        return getFormattedDateString(exerciseTime);
-    }
-}, {
     title: '创建时间',
     dataIndex: 'createdTime',
+    width: 150,
     render: createdTime => {
         return getFormattedDateString(createdTime);
+    }
+}, {
+    title: '行权时间',
+    dataIndex: 'exerciseTime',
+    width: 150,
+    fixed: 'right',
+    render: exerciseTime => {
+        return getFormattedDateString(exerciseTime);
     }
 }];
 
@@ -265,7 +267,7 @@ export default class EarningReport extends Component {
                     pagination={this.state.pagination}
                     loading={this.state.loading}
                     onChange={this.handleTableChange}
-                    scroll={{ y: tableHeight }}
+                    scroll={{ x: 1600, y: tableHeight }}
                     size="small"
                     footer={this.footer}
                 />
