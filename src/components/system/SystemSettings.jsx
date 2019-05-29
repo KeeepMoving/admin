@@ -121,54 +121,96 @@ class SystemSettings extends Component {
                     <Row gutter={24}>
                         <Col span={12}>
                             <Card size='small' title="机器人设置" bordered={true} headStyle={{backgroundColor: '#eff1f4'}}>
-                                <Form.Item label="下单间隔(秒)">
-                                    <Select name="robotOrderPeriod" value={this.state.settings.robotOrderPeriod}
-                                            onChange={(value) => this.handleSelectFilterChange("robotOrderPeriod", value)}>
-                                        {this.getDefaultOptions(10)}
-                                    </Select>
-                                </Form.Item>
-                                <Form.Item label="最小倍数率">
-                                    <Input name="robotMinMultipleRate" type="number" value={this.state.settings.robotMinMultipleRate} onChange={this.handleInputFilterChange}/>
-                                </Form.Item>
-                                <Form.Item label="最大倍数率">
-                                    <Input name="robotMaxMultipleRate" type="number" value={this.state.settings.robotMaxMultipleRate} onChange={this.handleInputFilterChange}/>
-                                </Form.Item>
-                                <Form.Item label="最小下单份数">
-                                    <Input name="robotMinQuantity" type="number" value={this.state.settings.robotMinQuantity} onChange={this.handleInputFilterChange}/>
-                                </Form.Item>
-                                <Form.Item label="最大下单份数">
-                                    <Input name="robotMaxQuantity" type="number" value={this.state.settings.robotMaxQuantity} onChange={this.handleInputFilterChange}/>
-                                </Form.Item>
-                                <Form.Item label="最大头寸">
-                                    <Input name="robotMaxMargin" type="number" value={this.state.settings.robotMaxMargin} onChange={this.handleInputFilterChange}/>
-                                </Form.Item>
+                                <Row gutter={24}>
+                                    <Col span={12} key={1}>
+                                        <Form.Item label="下单间隔(秒)">
+                                            <Select name="robotOrderPeriod" value={this.state.settings.robotOrderPeriod}
+                                                    onChange={(value) => this.handleSelectFilterChange("robotOrderPeriod", value)}>
+                                                {this.getDefaultOptions(10)}
+                                            </Select>
+                                        </Form.Item>
+                                    </Col>
+                                    <Col span={12} key={2}>
+                                        <Form.Item label="最大头寸">
+                                            <Input name="robotMaxMargin" type="number" value={this.state.settings.robotMaxMargin} onChange={this.handleInputFilterChange}/>
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                                <Row gutter={24}>
+                                    <Col span={12} key={1}>
+                                        <Form.Item label="最小倍数率">
+                                            <Input name="robotMinMultipleRate" type="number" value={this.state.settings.robotMinMultipleRate} onChange={this.handleInputFilterChange}/>
+                                        </Form.Item>
+                                    </Col>
+                                    <Col span={12} key={2}>
+                                        <Form.Item label="最大倍数率">
+                                            <Input name="robotMaxMultipleRate" type="number" value={this.state.settings.robotMaxMultipleRate} onChange={this.handleInputFilterChange}/>
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                                <Row gutter={24}>
+                                    <Col span={12} key={1}>
+                                        <Form.Item label="最小下单份数">
+                                            <Input name="robotMinQuantity" type="number" value={this.state.settings.robotMinQuantity} onChange={this.handleInputFilterChange}/>
+                                        </Form.Item>
+                                    </Col>
+                                    <Col span={12} key={2}>
+                                        <Form.Item label="最大下单份数">
+                                            <Input name="robotMaxQuantity" type="number" value={this.state.settings.robotMaxQuantity} onChange={this.handleInputFilterChange}/>
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
                             </Card>
                         </Col>
                         <Col span={12}>
                             <Card size='small' title="小老鼠设置" bordered={true} headStyle={{backgroundColor: '#eff1f4'}}>
-                                <Form.Item label="下单间隔(秒)">
-                                    <Select name="mouseOrderPeriod" value={this.state.settings.mouseOrderPeriod}
-                                            onChange={(value) => this.handleSelectFilterChange("mouseOrderPeriod", value)}>
-                                        {this.getDefaultOptions(10)}
-                                    </Select>
-                                </Form.Item>
-                                <Form.Item label="最小倍数率">
-                                    <Input name="mouseMinMultipleRate" type="number" value={this.state.settings.mouseMinMultipleRate} onChange={this.handleInputFilterChange}/>
-                                </Form.Item>
-                                <Form.Item label="最小下单份数">
-                                    <Input name="mouseMinQuantity" type="number" value={this.state.settings.mouseMinQuantity} onChange={this.handleInputFilterChange}/>
-                                </Form.Item>
-                                <Form.Item label="最大下单份数">
-                                    <Input name="mouseMaxQuantity" type="number" value={this.state.settings.mouseMaxQuantity} onChange={this.handleInputFilterChange}/>
-                                </Form.Item>
-                                <Form.Item label="最大头寸">
-                                    <Input name="mouseMaxPremium" type="number" value={this.state.settings.mouseMaxPremium} onChange={this.handleInputFilterChange}/>
-                                </Form.Item>
+                                <Row gutter={24}>
+                                    <Col span={12} key={1}>
+                                        <Form.Item label="下单间隔(秒)">
+                                            <Select name="mouseOrderPeriod" value={this.state.settings.mouseOrderPeriod}
+                                                    onChange={(value) => this.handleSelectFilterChange("mouseOrderPeriod", value)}>
+                                                {this.getDefaultOptions(10)}
+                                            </Select>
+                                        </Form.Item>
+                                    </Col>
+                                    <Col span={12} key={2}>
+                                        <Form.Item label="最大头寸">
+                                            <Input name="mouseMaxPremium" type="number" value={this.state.settings.mouseMaxPremium} onChange={this.handleInputFilterChange}/>
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                                <Row gutter={24}>
+                                    <Col span={12} key={1}>
+                                        <Form.Item label="最小下单份数">
+                                            <Input name="mouseMinQuantity" type="number" value={this.state.settings.mouseMinQuantity} onChange={this.handleInputFilterChange}/>
+                                        </Form.Item>
+                                    </Col>
+                                    <Col span={12} key={2}>
+                                        <Form.Item label="最大下单份数">
+                                            <Input name="mouseMaxQuantity" type="number" value={this.state.settings.mouseMaxQuantity} onChange={this.handleInputFilterChange}/>
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                                <Row gutter={24}>
+                                    <Col span={12} key={1}>
+                                        <Form.Item label="最小倍数率">
+                                            <Input name="mouseMinMultipleRate" type="number" value={this.state.settings.mouseMinMultipleRate} onChange={this.handleInputFilterChange}/>
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
                             </Card>
-                            <Form.Item label="未行权概率">
-                                <Input name="expiredProb" type="number" value={this.state.settings.expiredProb} onChange={this.handleInputFilterChange}/>
+                        </Col>
+                    </Row>
+                    <Row gutter={24}>
+                        <Col span={12} key={1}>
+                            <Form.Item label="行权概率">
+                                <Input name="exercisedProb" type="number" value={this.state.settings.exercisedProb} onChange={this.handleInputFilterChange}/>
                             </Form.Item>
-                            <Button type="primary" onClick={this.handleUpdateSettings}>提交更新</Button>
+                        </Col>
+                        <Col span={12} key={2}>
+                            <Form.Item label="action">
+                                <Button type="primary" onClick={this.handleUpdateSettings}>提交更新</Button>
+                            </Form.Item>
                         </Col>
                     </Row>
                 </Panel>
