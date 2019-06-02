@@ -5,6 +5,10 @@ const getEarningReports = (params, successHandler) => {
     http.get(constant.api.getEarningReports, params, successHandler,(error) => {})
 };
 
+const getSelfEarningReports = (params, successHandler) => {
+    http.get(constant.api.getSelfEarningReports, params, successHandler,(error) => {})
+};
+
 const getOrderReports = (params, successHandler) => {
     http.get(constant.api.getOrderReports, params, successHandler,(error) => {})
 };
@@ -15,6 +19,7 @@ const getContractReports = (params, successHandler) => {
 
 export {
     getEarningReports,
+    getSelfEarningReports,
     getOrderReports,
     getContractReports
 }

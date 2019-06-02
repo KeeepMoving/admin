@@ -9,6 +9,7 @@ export default {
         getTrades: "/aas/api/v1/getTrades",
         getReports: "/aas/api/v1/getReports",
         getEarningReports: "/aas/api/v1/getEarningReports",
+        getSelfEarningReports: "/aas/api/v1/getSelfEarningReports",
         getOrderReports: "/aas/api/v1/getOrderReports",
         getContractReports: "/aas/api/v1/getContractReports",
         loginUser: "/aas/api/v1/login",

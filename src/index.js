@@ -13,6 +13,7 @@ import Trade from "./components/order/Trade";
 import FailedRequest from "./components/order/FailedRequest";
 import OrderReport from "./components/report/OrderReport";
 import EarningReport from "./components/report/EarningReport";
+import SelfEarningReport from "./components/report/SelfEarningReport";
 import ContractReport from "./components/report/ContractReport";
 import Login from "./components/user/Login";
 
@@ -27,6 +28,7 @@ let router = (
                 <Route path="/trade" exact component={Trade}/>
                 <Route path="/orderReport" exact component={OrderReport}/>
                 <Route path="/earningReport" exact component={EarningReport}/>
+                <Route path="/selfEarningReport" exact component={SelfEarningReport}/>
                 <Route path="/contractReport" exact component={ContractReport}/>
                 <Route path="/failedRequest" exact component={FailedRequest}/>
                 <Route path="/" component={NotFound}/>

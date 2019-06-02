@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Table, Form, DatePicker, Button } from 'antd';
 import moment from 'moment';
 import constants from '../../data/constants';
-import {getEarningReports} from "../../services/order/ReportService"
+import {getEarningReports} from "../../services/report/ReportService"
 import {getFormattedDateString, getUuid} from "../../utils/commonUitl";
 
 const {RangePicker} = DatePicker;

@@ -53,8 +53,9 @@ export default class AppContainer extends Component {
                         </SubMenu>
                         <SubMenu key="sub3" title={<span><Icon type="table" /><span>报表管理</span></span>}>
                             <Menu.Item key="5" onClick={() => this.switchItem("orderReport")}>订单报表</Menu.Item>
-                            <Menu.Item key="6" onClick={() => this.switchItem("earningReport")}>收益报表</Menu.Item>
-                            <Menu.Item key="7" onClick={() => this.switchItem("contractReport")}>合约报表</Menu.Item>
+                            <Menu.Item key="6" onClick={() => this.switchItem("earningReport")}>收益报表(DX)</Menu.Item>
+                            <Menu.Item key="7" onClick={() => this.switchItem("selfEarningReport")}>收益报表(AOS)</Menu.Item>
+                            <Menu.Item key="8" onClick={() => this.switchItem("contractReport")}>合约报表</Menu.Item>
                         </SubMenu>
                     </Menu>
                 </Sider>

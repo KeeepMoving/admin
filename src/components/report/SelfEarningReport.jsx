@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import { Table, Form, DatePicker, Button } from 'antd';
 import moment from 'moment';
 import constants from '../../data/constants';
-import {getContractReports} from "../../services/report/ReportService"
+import {getSelfEarningReports} from "../../services/report/ReportService"
 import {getFormattedDateString, getUuid} from "../../utils/commonUitl";
 
+const {RangePicker} = DatePicker;
 const formatNumber = (value) => {
     return Number(value).toFixed(4);
 };
-
 const getEarningRender = (value) => {
     if (value > 0) {
         return <span className="gain">{formatNumber(value)}</span>;
@@ -18,30 +18,112 @@ const getEarningRender = (value) => {
         return <span>{value}</span>
     }
 };
-const {RangePicker} = DatePicker;
+const getTotalEarningRender = (value) => {
+    if (value > 0) {
+        return <span className="gain-blob">{formatNumber(value)}</span>;
+    } else if (value < 0) {
+        return <span className="loss-blob">{formatNumber(value)}</span>
+    } else {
+        return <span>{value}</span>
+    }
+};
 const columns = [{
-    title: '行权时点指数',
-    dataIndex: 'currentIndex',
-    width: 100
-}, {
-    title: '牛宝行权价',
-    dataIndex: 'dcoPrice',
-    width: 100
-}, {
-    title: '牛宝行权差值',
-    width: 100,
-    render: item => {
-        return getEarningRender(item.currentIndex - item.dcoPrice);
+    title: '牛买收益',
+    dataIndex: 'dcoBEarning',
+    width: 80,
+    render: dcoBEarning => {
+        return getEarningRender(dcoBEarning);
     }
 }, {
-    title: '熊宝行权价',
-    dataIndex: 'dpoPrice',
-    width: 100
+    title: '牛卖收益',
+    dataIndex: 'dcoSEarning',
+    width: 80,
+    render: dcoSEarning => {
+        return getEarningRender(dcoSEarning);
+    }
 }, {
-    title: '熊宝行权差值',
+    title: '熊买收益',
+    dataIndex: 'dpoBEarning',
+    width: 80,
+    render: dpoBEarning => {
+        return getEarningRender(dpoBEarning);
+    }
+}, {
+    title: '熊卖收益',
+    dataIndex: 'dpoSEarning',
+    width: 80,
+    render: dpoSEarning => {
+        return getEarningRender(dpoSEarning);
+    }
+}, {
+    title: '机器人保证金',
+    dataIndex: 'robotMargin',
     width: 100,
-    render: item => {
-        return getEarningRender(item.dpoPrice - item.currentIndex);
+    render: robotMargin => {
+        return formatNumber(robotMargin);
+    }
+}, {
+    title: '机器人权利金',
+    dataIndex: 'robotPremium',
+    width: 100,
+    render: robotPremium => {
+        return formatNumber(robotPremium);
+    }
+}, {
+    title: '机器人收益',
+    dataIndex: 'robotEarning',
+    width: 100,
+    render: robotEarning => {
+        return getTotalEarningRender(robotEarning);
+    }
+}, {
+    title: '机器人手续费',
+    dataIndex: 'robotFee',
+    width: 100,
+    render: robotFee => {
+        return formatNumber(robotFee);
+    }
+}, {
+    title: '机器人总收益',
+    dataIndex: 'robotTotalEarning',
+    width: 100,
+    render: robotEarning => {
+        return getTotalEarningRender(robotEarning);
+    }
+}, {
+    title: '小老鼠权利金',
+    dataIndex: 'mousePremium',
+    width: 100,
+    render: mousePremium => {
+        return formatNumber(mousePremium);
+    }
+}, {
+    title: '小老鼠收益',
+    dataIndex: 'mouseEarning',
+    width: 100,
+    render: mouseEarning => {
+        return getTotalEarningRender(mouseEarning);
+    }
+}, {
+    title: '小老鼠手续费',
+    dataIndex: 'mouseFee',
+    width: 100,
+    render: mouseFee => {
+        return formatNumber(mouseFee);
+    }
+}, {
+    title: '小老鼠总收益',
+    dataIndex: 'mouseTotalEarning',
+    width: 100,
+    render: mouseEarning => {
+        return getTotalEarningRender(mouseEarning);
+    }
+}, {
+    title: '总收益',
+    dataIndex: 'totalEarning',
+    width: 80,
+    render: totalEarning => {
+        return getTotalEarningRender(totalEarning);
     }
 }, {
     title: '行权时间',
@@ -53,13 +135,12 @@ const columns = [{
 }, {
     title: '创建时间',
     dataIndex: 'createdTime',
-    width: 180,
     render: createdTime => {
         return getFormattedDateString(createdTime);
     }
 }];
 
-export default class ContractReport extends Component {
+export default class EarningReport extends Component {
     state = {
         data: [],
         pagination: {
@@ -137,7 +218,7 @@ export default class ContractReport extends Component {
 
     fetch = (params = {}) => {
         this.setState({ loading: true });
-        getContractReports({
+        getSelfEarningReports({
             pageSize: this.state.pagination.pageSize,
             pageIndex: this.state.pagination.current,
                 ...params,
@@ -150,6 +231,19 @@ export default class ContractReport extends Component {
                 pagination: pagination
             });
         });
+    };
+
+    footer = () => {
+        let robot_total_earning = 0;
+        let mouse_total_earning = 0;
+        this.state.data.forEach((item) => {
+            robot_total_earning += item.robotTotalEarning;
+            mouse_total_earning += item.mouseTotalEarning;
+        });
+        return <div>
+            <span>机器人合计收益: {getTotalEarningRender(robot_total_earning)}</span>&nbsp;&nbsp;
+            <span>小老鼠合计收益: {getTotalEarningRender(mouse_total_earning)}</span>
+        </div>;
     };
 
     render() {
@@ -173,6 +267,7 @@ export default class ContractReport extends Component {
                     onChange={this.handleTableChange}
                     scroll={{ y: tableHeight }}
                     size="small"
+                    footer={this.footer}
                 />
             </div>
         );
