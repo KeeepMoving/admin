@@ -42,7 +42,7 @@ export default class AppContainer extends Component {
             <Layout>
                 <Sider trigger={null} collapsible collapsed={this.state.collapsed} hidden={!this.state.isLogin}>
                     <div className="logo">拍一拍 ADMIN</div>
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                    <Menu id="navigation" theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                         <SubMenu key="sub1" title={<span><Icon type="setting" /><span>系统管理</span></span>}>
                             <Menu.Item key="1" onClick={() => this.switchItem("systemSettings")}>系统设置</Menu.Item>
                         </SubMenu>

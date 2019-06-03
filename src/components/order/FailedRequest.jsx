@@ -48,7 +48,7 @@ const columns = [{
 }, {
     title: '创建时间',
     dataIndex: 'createdTime',
-    width: 200,
+    width: 180,
     render: createdTime => {
         return getFormattedDateString(createdTime);
     }
