@@ -197,6 +197,11 @@ class SystemSettings extends Component {
                                             <Input name="mouseMinMultipleRate" type="number" value={this.state.settings.mouseMinMultipleRate} onChange={this.handleInputFilterChange}/>
                                         </Form.Item>
                                     </Col>
+                                    <Col span={12} key={1}>
+                                        <Form.Item label="成交比例">
+                                            <Input name="mouseSelfTradeRate" type="number" value={this.state.settings.mouseSelfTradeRate} onChange={this.handleInputFilterChange}/>
+                                        </Form.Item>
+                                    </Col>
                                 </Row>
                             </Card>
                         </Col>
